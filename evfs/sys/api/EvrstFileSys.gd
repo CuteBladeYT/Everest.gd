@@ -50,3 +50,26 @@ func resolvePath(_root: String, input_path: String) -> String:
 				parts.append(segment)
 	
 	return "/" + "/".join(parts)
+
+func _getGdPath(path: String) -> String:
+	return "res://evfs" + path
+
+func readFile(filePath: String) -> String:
+	var _f := FileAccess.get_file_as_string(
+		_getGdPath(
+			resolvePath(filePath, "./")
+		)
+	)
+	return _f
+
+func readDir(dirPath: String) -> Array[String]:
+	var pth: String = _getGdPath(
+		resolvePath(dirPath, "./")
+	)
+	var dirs: PackedStringArray = DirAccess.get_directories_at(pth)
+	var files: PackedStringArray = DirAccess.get_files_at(pth)
+
+	var out: Array[String] = []
+	out.append_array(dirs)
+	out.append_array(files)
+	return out
