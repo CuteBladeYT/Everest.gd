@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://3pkdyysyim8d"]
+
+[ext_resource type="FontFile" uid="uid://c7wapwrn2u8l8" path="res://evfs/usr/shared/font/notosans_mono.ttf" id="1_oidwd"]
+[ext_resource type="Texture2D" uid="uid://c1h6leutla52n" path="res://evfs/sys/shell/ui/res/pathBgArrow.png" id="2_4qww6"]
+
+[sub_resource type="Theme" id="Theme_ebd0b"]
+default_font = ExtResource("1_oidwd")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6noxp"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oidwd"]
+
+[node name="shell" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ebd0b")
+theme_override_constants/separation = 0
+
+[node name="output" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+threaded = true
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[node name="input" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="path" type="Label" parent="input"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6noxp")
+text = "/"
+vertical_alignment = 1
+
+[node name="block" type="ColorRect" parent="input/path"]
+modulate = Color(0.105882, 0.105882, 0.105882, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+
+[node name="arrow" type="TextureRect" parent="input/path/block"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4qww6")
+expand_mode = 1
+
+[node name="user" type="Label" parent="input"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "ROOT"
+vertical_alignment = 1
+
+[node name="block" type="ColorRect" parent="input/user"]
+modulate = Color(0.254902, 0.666667, 0.235294, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+
+[node name="arrow" type="TextureRect" parent="input/user/block"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4qww6")
+expand_mode = 1
+
+[node name="_" type="ColorRect" parent="input"]
+modulate = Color(0, 0, 0, 0)
+z_index = -4096
+layout_mode = 2
+
+[node name="cmd" type="LineEdit" parent="input"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oidwd")
+placeholder_text = ">_"
+flat = true
